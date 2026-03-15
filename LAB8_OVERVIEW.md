@@ -57,6 +57,28 @@ Identify a specific domain reasoning task within the project. Describe:
 | Campus assistant | Answer university policy questions |
 | Healthcare assistant | Explain clinical guidelines |
 
+#### Domain Task Definition
+
+This project focuses on the **legal demand** domain. The goal of the system is to assist with drafting, analyzing, and evaluating legal demand letters based on user-provided legal scenarios or existing draft letters.
+
+The system uses a retrieval-augmented generation (RAG) pipeline to retrieve relevant statutes, legal templates, and case summaries. These sources provide contextual information that helps the model generate more accurate and domain-specific responses.
+
+**Expected Outputs**
+
+The system is designed to produce responses that include:
+
+- properly structured demand letters
+- identification of potential legal claims
+- extraction of key elements such as parties, damages, deadlines, and remedies
+- evaluation of whether a demand letter satisfies common legal requirements
+- suggested remedies based on the identified claim
+
+**Why Domain Adaptation Is Needed**
+
+General-purpose language models often produce generic legal language and may fail to identify the correct legal elements required in a demand letter. Domain adaptation allows the model to better recognize legal claim patterns, understand the structure of demand letters, and produce clearer and more actionable legal responses.
+
+By adapting the model to the legal demand domain, the system is expected to generate more precise legal reasoning, better structured demand letters, and improved identification of relevant remedies.
+
 ### Step 2 – Build an Instruction Dataset
 
 Create a small instruction dataset (**20–50 examples**) in JSON or CSV format.
