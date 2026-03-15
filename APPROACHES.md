@@ -58,7 +58,7 @@ Fine-tune a small open-source model on our instruction dataset using parameter-e
 ```
 Build instruction dataset (20–50 examples)
   ↓
-Select base model (Phi-3 Mini, Mistral 7B, or Llama 3 8B)
+Base model: Qwen3.5-9B
   ↓
 Apply QLoRA fine-tuning via HuggingFace PEFT
   ↓
@@ -73,10 +73,7 @@ Integrate fine-tuned model into pipeline
 
 | Model | Size | VRAM Needed | Colab Tier |
 |---|---|---|---|
-| Phi-3 Mini | 3.8B | ~8 GB (QLoRA) | Free (T4) |
-| Mistral 7B | 7B | ~12 GB (QLoRA) | Free (T4) |
-| Llama 3 8B | 8B | ~12 GB (QLoRA) | Free (T4) |
-| Phi-3 Medium | 14B | ~16 GB (QLoRA) | Pro (A100) |
+| **Qwen3.5-9B** (selected) | 9B | ~14 GB (QLoRA) | Pro (A100) |
 
 ### Pros
 

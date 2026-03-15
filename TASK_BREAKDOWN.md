@@ -43,13 +43,13 @@ The project domain is **legal demand** — the system will assist with drafting,
 
 ---
 
-## Team Member 2 – LoRA Fine-Tuning + GEPA Optimization (35%)
+## Team Member 2 (Blake) – Model Adaptation, Integration & Demo (45%)
 
 ### Responsibilities
 
 - **Track A: QLoRA Fine-Tuning** (Step 3, Option A)
   - Set up the training environment (Google Colab)
-  - Select and load a base model (Phi-3 Mini, Mistral 7B, or Llama 3 8B)
+  - Load Qwen3.5-9B as the base model on Colab Pro (A100)
   - Apply QLoRA fine-tuning using HuggingFace Transformers + PEFT library
   - Train the model on the instruction dataset
   - Save and export adapter weights
@@ -66,19 +66,6 @@ The project domain is **legal demand** — the system will assist with drafting,
   - Verify GEPA-optimized prompts produce improved responses
   - Test the combined configuration (GEPA prompts + QLoRA model)
   - Document training parameters, hyperparameters, and GEPA settings
-
-### Deliverables
-
-- QLoRA fine-tuning scripts committed to the repo
-- Saved adapter weights
-- GEPA configuration and optimized prompt artifacts
-- Sections of the group report: both adaptation methods, implementation details, comparative methodology
-
----
-
-## Team Member 3 – Integration, UI & Demo (30%)
-
-### Responsibilities
 
 - **Integrate both adaptation tracks into the project pipeline** (Step 4)
   - Update the FastAPI backend to support all 4 configurations: Baseline, GEPA-optimized, QLoRA fine-tuned, GEPA + QLoRA combined
@@ -98,16 +85,33 @@ The project domain is **legal demand** — the system will assist with drafting,
   - Code cleanup and documentation
   - Ensure the GitHub repo is well-organized
 
+### Deliverables
+
+- QLoRA fine-tuning scripts committed to the repo
+- Saved adapter weights
+- GEPA configuration and optimized prompt artifacts
+- Updated Streamlit app and FastAPI backend with 4-configuration toggle
+- Working demo showing comparison across all configurations
+
+---
+
+## Team Member 3 – Report & Documentation (20%)
+
+### Responsibilities
+
 - **Group report coordination**
   - Compile the final group report (1–2 pages, PDF)
+  - Write up adaptation methods, integration details, and comparative methodology based on Member 2's implementation
   - Ensure the contribution table is included and totals 100%
   - Include GitHub repository link
   - Coordinate with teammates on report sections
 
+- **Documentation**
+  - Ensure all code and configuration is documented
+  - Review repo organization and clean up as needed
+
 ### Deliverables
 
-- Updated Streamlit app and FastAPI backend with 4-configuration toggle
-- Working demo showing comparison across all configurations
 - Final group report (compiled from all members' sections)
 
 ---
@@ -130,8 +134,8 @@ The project domain is **legal demand** — the system will assist with drafting,
 | Team Member | Focus Area | Percentage |
 |---|---|---|
 | Member 1 | Dataset creation, domain task definition, evaluation | 35% |
-| Member 2 | QLoRA fine-tuning + GEPA optimization (both tracks) | 35% |
-| Member 3 | Streamlit/FastAPI integration (4-config toggle), demo, report assembly | 30% |
+| Member 2 (Blake) | QLoRA fine-tuning, GEPA optimization, FastAPI/Streamlit integration, demo | 45% |
+| Member 3 | Report compilation and documentation | 20% |
 | **Total** | | **100%** |
 
 ---
