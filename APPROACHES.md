@@ -1,5 +1,9 @@
 # Lab 8: Domain Adaptation Approaches
 
+## Chosen Domain: Legal Demand
+
+The project focuses on **legal demand** — assisting with drafting, analyzing, and evaluating demand letters and related legal claims. The RAG knowledge base will include statutes, demand letter templates, and case summaries.
+
 ## Background: GEPA-lite
 
 Our team has an existing project, **GEPA-lite** (Genetic-Pareto), a prompt/text optimization framework that uses LLM-based reflection and evolutionary search. GEPA automates prompt adaptation by:
@@ -144,10 +148,10 @@ Response (with side-by-side comparison view)
 
 | Metric | Description |
 |---|---|
-| Accuracy | Correctness of domain-specific responses |
-| Domain relevance | Quality and depth of reasoning |
-| Hallucination rate | Frequency of incorrect information |
-| Response clarity | Explanation quality and structure |
+| Accuracy | Correctness of legal analysis and cited statutes |
+| Domain relevance | Quality of legal reasoning and demand letter structure |
+| Hallucination rate | Frequency of fabricated statutes, cases, or legal elements |
+| Response clarity | Explanation quality, proper legal tone, and actionable recommendations |
 
 ### Pros
 

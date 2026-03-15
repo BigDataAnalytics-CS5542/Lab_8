@@ -1,6 +1,10 @@
 # Lab 8: Task Breakdown by Team Member
 
-## Deadline: Friday, March 13, 2026 (grace period until Monday, March 15 at noon)
+## Domain: Legal Demand
+
+The project domain is **legal demand** — the system will assist with drafting, analyzing, and evaluating demand letters and related legal claims. The RAG pipeline will retrieve relevant statutes, demand letter templates, and case summaries to support domain-adapted responses.
+
+## Deadline: Sunday, March 15, 2026 at midnight
 
 ---
 
@@ -9,59 +13,66 @@
 ### Responsibilities
 
 - **Define the domain task** (Step 1)
-  - Identify the specific domain reasoning task for the project
-  - Document what the expected model output should look like
-  - Write justification for why domain adaptation will improve the system
+  - Domain task: Analyzing legal scenarios and drafting/evaluating demand letters
+  - Expected output: Properly structured demand letters, legal claim identification, element extraction, and remedy recommendations
+  - Justification: Baseline LLMs produce generic legal language — domain adaptation should improve specificity around statutes, required elements, proper tone, and actionable remedies
 
 - **Build the instruction dataset** (Step 2)
-  - Create 20–50 instruction/input/output examples in JSON format
-  - Source examples from project data, research papers, domain documents, and/or AI-generated content
+  - Create 20–50 instruction/input/output examples in JSON format covering:
+    - Drafting demand letters from fact patterns
+    - Identifying legal claim types from scenarios
+    - Extracting key elements (parties, damages, deadlines, remedies) from demand letters
+    - Evaluating whether a demand letter meets formal requirements
+    - Suggesting appropriate remedies based on claim type
+  - Source examples from legal templates, sample demand letters, statutes, and AI-generated content
   - Ensure dataset quality and domain relevance
   - Validate dataset formatting for compatibility with the training pipeline
 
 - **Design and run evaluation** (Step 5)
   - Create at least 10 evaluation queries
-  - Run queries against both baseline and adapted systems
+  - Run queries against all 4 configurations: Baseline, GEPA-optimized, QLoRA fine-tuned, GEPA + QLoRA combined
   - Measure: accuracy, domain relevance, hallucination rate, response clarity
-  - Build the comparison table of baseline vs. adapted results
-  - Write up evaluation results and analysis for the group report
+  - Build the 4-way comparison table across all configurations
+  - Write up evaluation results and comparative analysis for the group report
 
 ### Deliverables
 
 - `instruction_dataset.json` (or `.csv`) committed to the repo
-- Evaluation queries and results documentation
-- Sections of the group report: domain task definition, dataset description, evaluation results
+- Evaluation queries and 4-way comparison results documentation
+- Sections of the group report: domain task definition, dataset description, comparative evaluation results
 
 ---
 
-## Team Member 2 – Fine-Tuning / Model Adaptation (35%)
+## Team Member 2 – LoRA Fine-Tuning + GEPA Optimization (35%)
 
 ### Responsibilities
 
-- **Implement domain adaptation** (Step 3)
-  - Choose adaptation method: LoRA/QLoRA fine-tuning (preferred) or prompt adaptation
-  - Set up the training environment (Google Colab, local, etc.)
-  - Select and load a base model (Mistral, Llama, Phi, etc.)
-  - Apply LoRA/QLoRA fine-tuning using HuggingFace Transformers + PEFT library
+- **Track A: QLoRA Fine-Tuning** (Step 3, Option A)
+  - Set up the training environment (Google Colab)
+  - Select and load a base model (Phi-3 Mini, Mistral 7B, or Llama 3 8B)
+  - Apply QLoRA fine-tuning using HuggingFace Transformers + PEFT library
   - Train the model on the instruction dataset
-  - Save and export the adapted model/adapter weights
+  - Save and export adapter weights
 
-- **If using Option B (Prompt Adaptation)**
-  - Design structured system prompts with domain-specific instructions
-  - Implement chain-of-thought prompting strategies
-  - Create prompt templates that encode domain knowledge
-  - Demonstrate measurable improvement over baseline prompts
+- **Track B: GEPA Prompt Optimization** (Step 3, Option B)
+  - Configure GEPA-lite with the Generic RAG Adapter for legal demand tasks
+  - Optimize prompts for legal reasoning: claim identification, demand letter structure, statute citation
+  - Run evolutionary optimization on system/RAG prompts
+  - Select Pareto-optimal prompt candidates
+  - Document GEPA configuration and optimization results
 
-- **Model validation**
-  - Verify the adapted model loads and generates responses correctly
-  - Test basic inference before integration
-  - Document training parameters, hyperparameters, and any issues encountered
+- **Model/prompt validation**
+  - Verify the QLoRA-adapted model loads and generates responses correctly
+  - Verify GEPA-optimized prompts produce improved responses
+  - Test the combined configuration (GEPA prompts + QLoRA model)
+  - Document training parameters, hyperparameters, and GEPA settings
 
 ### Deliverables
 
-- Fine-tuning / adaptation scripts committed to the repo
-- Saved model weights or adapter files (or prompt templates if using Option B)
-- Sections of the group report: adaptation method used, implementation details
+- QLoRA fine-tuning scripts committed to the repo
+- Saved adapter weights
+- GEPA configuration and optimized prompt artifacts
+- Sections of the group report: both adaptation methods, implementation details, comparative methodology
 
 ---
 
@@ -69,19 +80,20 @@
 
 ### Responsibilities
 
-- **Integrate adapted model into the project pipeline** (Step 4)
-  - Update the FastAPI backend to load and serve the adapted model
-  - Connect RAG retrieval pipeline to the domain-adapted model
-  - Ensure the full pipeline works: Streamlit UI → FastAPI → RAG → Adapted Model → Response
-  - Handle any API/endpoint changes needed for the new model
+- **Integrate both adaptation tracks into the project pipeline** (Step 4)
+  - Update the FastAPI backend to support all 4 configurations: Baseline, GEPA-optimized, QLoRA fine-tuned, GEPA + QLoRA combined
+  - Add model/prompt selection logic (toggle between configurations)
+  - Connect RAG retrieval pipeline to each configuration
+  - Ensure the full pipeline works: Streamlit UI → FastAPI → RAG → Selected Configuration → Response
 
 - **Update the Streamlit demo** (Step 6)
-  - Add side-by-side or toggle view showing baseline vs. adapted responses
-  - Display improvement in domain reasoning clearly
+  - Add comparison toggle/dropdown to switch between all 4 configurations
+  - Add side-by-side comparison view showing responses from different configurations
+  - Display improvement metrics and differences clearly
   - Ensure the demo is polished for hackathon presentation
 
 - **Testing & code quality**
-  - End-to-end testing of the integrated system
+  - End-to-end testing of all 4 configurations
   - Verify all components work together
   - Code cleanup and documentation
   - Ensure the GitHub repo is well-organized
@@ -94,8 +106,8 @@
 
 ### Deliverables
 
-- Updated Streamlit app and FastAPI backend committed to the repo
-- Working demo showing baseline vs. adapted responses
+- Updated Streamlit app and FastAPI backend with 4-configuration toggle
+- Working demo showing comparison across all configurations
 - Final group report (compiled from all members' sections)
 
 ---
@@ -118,8 +130,8 @@
 | Team Member | Focus Area | Percentage |
 |---|---|---|
 | Member 1 | Dataset creation, domain task definition, evaluation | 35% |
-| Member 2 | Fine-tuning / model adaptation implementation | 35% |
-| Member 3 | Streamlit/FastAPI integration, demo, report assembly | 30% |
+| Member 2 | QLoRA fine-tuning + GEPA optimization (both tracks) | 35% |
+| Member 3 | Streamlit/FastAPI integration (4-config toggle), demo, report assembly | 30% |
 | **Total** | | **100%** |
 
 ---
@@ -128,9 +140,8 @@
 
 | Date | Milestone |
 |---|---|
-| Day 1 | Define domain task, start dataset creation, set up training env |
-| Day 2 | Complete dataset, begin fine-tuning / adaptation |
-| Day 3 | Finish adaptation, start integration |
-| Day 4 | Complete integration, run evaluations, update demo |
-| Day 5 (Mar 13) | Finalize report, submit group + individual reports |
-| Mar 15 (noon) | Hard deadline if using grace period |
+| **Tonight (Sat Mar 14)** | Define domain task, build instruction dataset, set up QLoRA training env + GEPA config, begin both adaptation tracks |
+| **Sun Mar 15 – Morning** | Finish QLoRA fine-tuning + GEPA optimization, start integration with 4-config toggle |
+| **Sun Mar 15 – Afternoon** | Complete integration, run 4-way evaluations, update Streamlit demo |
+| **Sun Mar 15 – Evening** | Finalize comparative analysis, compile report, submit group + individual reports |
+| **Sun Mar 15 at midnight** | **Hard deadline** |
