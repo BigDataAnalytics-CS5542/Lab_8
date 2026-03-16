@@ -28,9 +28,12 @@ app.add_middleware(
 
 # ── Configuration ────────────────────────────────────────────────────────────
 
-MODEL_ID = "Qwen/Qwen3.5-9B"
-HF_API_URL = f"https://router.huggingface.co/novita/v3/openai/chat/completions"
+# MODEL_ID = "Qwen/Qwen3.5-9B"
+MODEL_ID = "Qwen/Qwen2.5-7B-Instruct" # SERVERLESS
+HF_API_URL = f"https://router.huggingface.co/v1/chat/completions"
 HF_TOKEN = os.environ.get("HF_TOKEN", "")
+
+print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n  " + MODEL_ID)
 
 BASELINE_PROMPT = (
     "You are a legal demand assistant. You help draft demand letters, "
