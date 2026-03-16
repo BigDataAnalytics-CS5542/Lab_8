@@ -1,6 +1,8 @@
 ### Demo Link: 
 https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6853cfba-47ce-404a-824b-b40f004d223b
 
+### Group Report:
+https://github.com/BigDataAnalytics-CS5542/Lab_8/blob/main/Lab8_report.pdf
 
 #### Contribution Table
 
