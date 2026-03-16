@@ -1,0 +1,585 @@
+{
+  "metadata": {
+    "model": "Qwen/Qwen3.5-9B",
+    "timestamp": "2026-03-16T00:34:42.152904",
+    "num_queries": 10,
+    "configs": [
+      "baseline",
+      "gepa",
+      "qlora",
+      "gepa_qlora"
+    ]
+  },
+  "summary": {
+    "baseline": {
+      "label": "Baseline",
+      "overall_score": 0.9,
+      "per_task": {
+        "draft_demand_letter": 0.6666666666666666,
+        "identify_claim": 1.0,
+        "extract_elements": 1.0,
+        "evaluate_letter": 1.0,
+        "recommend_remedy": 0.8333333333333333
+      },
+      "per_query": {
+        "Q1": 0.6666666666666666,
+        "Q2": 0.6666666666666666,
+        "Q3": 1.0,
+        "Q4": 1.0,
+        "Q5": 1.0,
+        "Q6": 1.0,
+        "Q7": 1.0,
+        "Q8": 1.0,
+        "Q9": 1.0,
+        "Q10": 0.6666666666666666
+      }
+    },
+    "gepa": {
+      "label": "GEPA",
+      "overall_score": 0.8916666666666666,
+      "per_task": {
+        "draft_demand_letter": 0.9166666666666667,
+        "identify_claim": 1.0,
+        "extract_elements": 1.0,
+        "evaluate_letter": 0.5416666666666666,
+        "recommend_remedy": 1.0
+      },
+      "per_query": {
+        "Q1": 0.8333333333333334,
+        "Q2": 1.0,
+        "Q3": 1.0,
+        "Q4": 1.0,
+        "Q5": 1.0,
+        "Q6": 1.0,
+        "Q7": 0.75,
+        "Q8": 0.3333333333333333,
+        "Q9": 1.0,
+        "Q10": 1.0
+      }
+    },
+    "qlora": {
+      "label": "QLoRA",
+      "overall_score": 0.95,
+      "per_task": {
+        "draft_demand_letter": 0.9166666666666667,
+        "identify_claim": 1.0,
+        "extract_elements": 0.8333333333333333,
+        "evaluate_letter": 1.0,
+        "recommend_remedy": 1.0
+      },
+      "per_query": {
+        "Q1": 1.0,
+        "Q2": 0.8333333333333334,
+        "Q3": 1.0,
+        "Q4": 1.0,
+        "Q5": 1.0,
+        "Q6": 0.6666666666666666,
+        "Q7": 1.0,
+        "Q8": 1.0,
+        "Q9": 1.0,
+        "Q10": 1.0
+      }
+    },
+    "gepa_qlora": {
+      "label": "GEPA + QLoRA",
+      "overall_score": 0.925,
+      "per_task": {
+        "draft_demand_letter": 0.9166666666666667,
+        "identify_claim": 1.0,
+        "extract_elements": 1.0,
+        "evaluate_letter": 0.7083333333333333,
+        "recommend_remedy": 1.0
+      },
+      "per_query": {
+        "Q1": 0.8333333333333334,
+        "Q2": 1.0,
+        "Q3": 1.0,
+        "Q4": 1.0,
+        "Q5": 1.0,
+        "Q6": 1.0,
+        "Q7": 0.75,
+        "Q8": 0.6666666666666666,
+        "Q9": 1.0,
+        "Q10": 1.0
+      }
+    }
+  },
+  "detailed_results": {
+    "baseline": [
+      {
+        "query_id": "Q1",
+        "task_type": "draft_demand_letter",
+        "response": "Dear Mr. Lee,\n\nMy client, Sarah Chen, represented you in the residential lease for the apartment at 123 Main Street. Upon termination of the lease, you returned possession of the premises but did not provide an itemized statement of damages or return the $2,500 security deposit within the time required by the lease agreement and applicable law.\n\nPlease provide a written itemized explanation of any deductions within 10 days of receipt of this letter. If no written explanation is provided within that period, my client demands the return of the full $2,500 security deposit within 7 days thereafter.\n\nSincerely,\nJonathan Rivera",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": false,
+          "legal_basis": false
+        },
+        "total_score": 0.6666666666666666
+      },
+      {
+        "query_id": "Q2",
+        "task_type": "draft_demand_letter",
+        "response": "Dear [Client Name],\n\nI represent [Freelancer Name] regarding the branding services provided under your agreement dated [Date], which included the creation of a logo, brand guidelines, and marketing collateral. My client delivered all deliverables on [Delivery Date] as agreed, but despite multiple reminders, payment of $3,200 has not been received.\n\nMy client demands payment of $3,200 within 10 days of receipt of this letter. If payment is not made by that date, my client will consider pursuing all available remedies to recover the amount owed.\n\nSincerely,\n[Sender Name]",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": false,
+          "legal_basis": false
+        },
+        "total_score": 0.6666666666666666
+      },
+      {
+        "query_id": "Q3",
+        "task_type": "identify_claim",
+        "response": "{\n  \"claim_type\": \"breach_of_contract\",\n  \"reasoning\": \"The contractor accepted payment and began performance but failed to complete the agreed work, constituting a breach of contract.\"\n}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q4",
+        "task_type": "identify_claim",
+        "response": "{\n  \"claim_type\": \"fraud_or_misrepresentation\",\n  \"reasoning\": \"The seller knowingly misrepresented the vehicle's condition, inducing the buyer to enter a transaction based on false information.\"\n}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q5",
+        "task_type": "extract_elements",
+        "response": "{\n  \"claimant\": \"Sarah Kim\",\n  \"recipient\": \"Mr. Allen\",\n  \"damages\": \"$4,800 for water damage to property\",\n  \"deadline\": \"14 days from letter date\",\n  \"remedy\": \"Payment of $4,800\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": true,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q6",
+        "task_type": "extract_elements",
+        "response": "{\n  \"parties\": {\n    \"claimant\": \"Daniel Ortiz\",\n    \"recipient\": \"ABC Services\"\n  },\n  \"claim_type\": \"Unpaid wages\",\n  \"damages\": \"$1,950\",\n  \"deadline\": \"7 days\",\n  \"remedy_requested\": \"Payment of $1,950\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": true,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q7",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"is_adequate\": false,\n  \"strengths\": [\"States that money is owed\"],\n  \"missing_elements\": [\"Specific amount owed\", \"Deadline for payment\", \"Consequences of nonpayment\"],\n  \"suggested_improvements\": [\"Specify the exact amount owed\", \"Provide a deadline for payment\", \"Mention potential legal action if payment is not made\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_inadequate": true,
+          "json_format": true,
+          "missing_elements_listed": true,
+          "improvements_suggested": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q8",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"is_adequate\": true,\n  \"strengths\": [\"Identifies the dispute clearly\", \"States the amount owed\", \"Provides a deadline\", \"Requests specific action\"],\n  \"weaknesses\": [\"Does not cite the lease terms or law\", \"Does not explain the tenant's rights\", \"Does not propose a method of payment or return\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_adequate": true,
+          "json_format": true,
+          "strengths_listed": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q9",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"recommended_remedies\": [\"Refund of the deposit\", \"Compensation for additional repair costs\", \"Written acknowledgment of the breach\"],\n  \"reasoning\": \"The contractor failed to perform agreed work after receiving payment, causing the homeowner to incur additional expenses. Refund and cost reimbursement address the financial harm.\"\n}",
+        "criteria_scores": {
+          "multiple_remedies": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q10",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"recommended_remedies\": [\"Refund of purchase price\", \"Repair or replacement of the defective appliance\", \"Compensation for any additional damages\"],\n  \"reasoning\": \"The seller failed to fulfill their obligation to provide a working product despite the buyer's request for resolution.\"\n}",
+        "criteria_scores": {
+          "multiple_remedies": false,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 0.6666666666666666
+      }
+    ],
+    "gepa": [
+      {
+        "query_id": "Q1",
+        "task_type": "draft_demand_letter",
+        "response": "Dear [Landlord Name],\n\nI represent [Tenant Name] regarding the withholding of a $2,500 security deposit without an itemized statement of damages.\n\nThe security deposit was held and the $2,500 balance was withheld without a written accounting of deductions, which violates [State/Country] security deposit notice requirements under [Cite Specific State Law, e.g., State Residential Landlord-Tenant Act \u00a7 XXX].\n\nFailure to provide the required written accounting within the statutory timeframe may result in liability for the full amount of the withheld deposit plus statutory damages, penalties, and reimbursement of reasonable attorney fees and costs as provided by law.\n\nYou must provide a written itemized statement of damages and return the remaining balance within 14 days of receipt of this letter, no later than [Deadline Date]. Failure to comply will result in immediate filing of a lawsuit to recover the withheld funds and applicable remedies.\n\nSincerely,\n[Sender Name]",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": false,
+          "legal_basis": true
+        },
+        "total_score": 0.8333333333333334
+      },
+      {
+        "query_id": "Q2",
+        "task_type": "draft_demand_letter",
+        "response": "Dear [Client Name],\n\nI represent [Freelancer Name] regarding the branding services rendered under your agreement.\n\n**Parties Involved**\nSender: [Freelancer Name]\nRecipient: [Client Name]\n\n**Background Facts**\n[Freelancer Name] completed the branding project and delivered all requested deliverables. Despite completion and delivery, you have failed to pay the agreed $3,200.\n\n**Legal Basis**\nYour non-payment violates the contract terms and the applicable payment obligations under the agreement. Under California Civil Code \u00a7 1717, failure to pay for completed services may entitle the service provider to recovery of unpaid fees and reasonable attorney fees.\n\n**Demanded Action**\nPayment of $3,200 within 10 days.\n\n**Consequences of Non-Compliance**\nIf payment is not made by the deadline, [Freelancer Name] reserves the right to pursue all available remedies, including filing a demand for payment, requesting interest, and seeking recovery of attorney fees and costs as permitted by law.\n\n**Deadline**\nPayment must be received by [Client Name] on or before [Deadline Date] (10 days from receipt of this letter). Failure to comply will result in immediate filing of a lawsuit.\n\nSincerely,\n[Sender Name]",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": true,
+          "legal_basis": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q3",
+        "task_type": "identify_claim",
+        "response": "{\"claim_type\": \"tort\", \"reasoning\": \"The contractor accepted payment and abandoned the job, constituting unjust enrichment and breach of duty rather than a mere contract dispute.\"}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q4",
+        "task_type": "identify_claim",
+        "response": "{\"claim_type\": \"tort\", \"reasoning\": \"The seller's intentional misrepresentation regarding the car's history constitutes fraud, which takes priority over any contractual breach.\"}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q5",
+        "task_type": "extract_elements",
+        "response": "{\n  \"claimant\": \"Sarah Kim\",\n  \"recipient\": \"Mr. Allen\",\n  \"damages\": \"$4,800\",\n  \"deadline\": \"within 14 days of this letter\",\n  \"requested_remedy\": \"payment\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": true,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q6",
+        "task_type": "extract_elements",
+        "response": "{\n  \"claimant\": \"Daniel Ortiz\",\n  \"recipient\": \"ABC Services\",\n  \"damages\": \"$1,950\",\n  \"deadline\": \"7 days\",\n  \"requested_remedy\": \"payment of $1,950\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": true,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q7",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"status\": \"invalid\",\n  \"reasons\": [\"The letter lacks a specific demand for payment or remedy.\", \"It does not identify the parties involved.\", \"It fails to state the amount or obligation owed.\", \"It provides no deadline for compliance.\", \"It does not include a warning of potential legal action.\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_inadequate": false,
+          "json_format": true,
+          "missing_elements_listed": true,
+          "improvements_suggested": true
+        },
+        "total_score": 0.75
+      },
+      {
+        "query_id": "Q8",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"status\": \"needs_revision\",\n  \"reasons\": [\"The letter lacks specific demand details such as the tenant's name, property address, and deadline date.\", \"It does not include a warning about potential legal consequences or request a written response.\", \"Missing reference to applicable state law regarding security deposit timelines.\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_adequate": false,
+          "json_format": true,
+          "strengths_listed": false
+        },
+        "total_score": 0.3333333333333333
+      },
+      {
+        "query_id": "Q9",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"remedies\": [\"Refund of the deposit\", \"Reimbursement for additional repair costs\", \"Compensation for foreseeable consequential damages\"],\n  \"legal_basis\": \"Common law contract breach principles\",\n  \"action_steps\": [\"Send a formal demand letter to the original contractor\", \"Request written confirmation of the refund and reimbursement\", \"If unresolved, consider filing a claim in small claims court\"]\n}",
+        "criteria_scores": {
+          "multiple_remedies": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q10",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"remedies\": [\"Refund\", \"Replacement\", \"Compensation for damages\"],\n  \"legal_basis\": \"Consumer Rights Act 2015\",\n  \"action_steps\": [\"Submit a formal complaint in writing to the seller\", \"Request a refund or replacement within 30 days of purchase\", \"Escalate the dispute to a consumer protection agency if unresolved\", \"Consider legal action for breach of contract if necessary\"]\n}",
+        "criteria_scores": {
+          "multiple_remedies": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      }
+    ],
+    "qlora": [
+      {
+        "query_id": "Q1",
+        "task_type": "draft_demand_letter",
+        "response": "Dear Mr. Landlord,\n\nMy client represents the tenant who recently vacated your rental property. Despite the tenant's written notice of intent to vacate and timely return of the premises, you retained the entire $2,500 security deposit without providing an itemized statement of damages or explaining the basis for the deduction.\n\nUnder applicable law, a landlord must return any remaining deposit within 30 days of lease termination and must provide an itemized statement of any deductions. Your failure to comply may violate your obligations and could expose you to liability for the full amount of the deposit.\n\nMy client demands payment of the $2,500 deposit within 14 days of receipt of this letter. If payment is not made by that date, my client will consider all appropriate remedies, including filing a claim in small claims court.\n\nSincerely,\n[Sender Name]",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": true,
+          "legal_basis": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q2",
+        "task_type": "draft_demand_letter",
+        "response": "Dear [Client Name],\n\nI represent [Freelancer Name] regarding the completion of branding services under the agreement dated [Agreement Date] for a total fee of $3,200. The work was completed and all deliverables were provided by [Delivery Date], yet payment remains outstanding.\n\nMy client demands payment of $3,200 within 7 days of receipt of this letter. Failure to remit payment will leave my client no choice but to pursue all available remedies, including filing a claim in small claims court.\n\nSincerely,\n[Sender Name]",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": true,
+          "legal_basis": false
+        },
+        "total_score": 0.8333333333333334
+      },
+      {
+        "query_id": "Q3",
+        "task_type": "identify_claim",
+        "response": "{\n  \"claim_type\": \"breach_of_contract\",\n  \"reasoning\": \"The contractor accepted payment but failed to complete the agreed work, constituting a breach of the contract.\"\n}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q4",
+        "task_type": "identify_claim",
+        "response": "{\n  \"claim_type\": \"fraud_or_misrepresentation\",\n  \"reasoning\": \"The seller made a false statement about the vehicle's history that materially affected the buyer's decision to purchase.\"\n}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q5",
+        "task_type": "extract_elements",
+        "response": "{\n  \"claimant\": \"Sarah Kim\",\n  \"recipient\": \"Mr. Allen\",\n  \"damages\": \"$4,800 for water damage caused to her property\",\n  \"deadline\": \"14 days from letter date\",\n  \"remedy\": \"Payment of $4,800\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": true,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q6",
+        "task_type": "extract_elements",
+        "response": "{\n  \"parties\": {\n    \"claimant\": \"Daniel Ortiz\",\n    \"recipient\": \"ABC Services\"\n  },\n  \"claim_type\": \"unpaid_wages\",\n  \"amount_disputed\": \"$1,950\",\n  \"deadline\": \"7 days\",\n  \"remedy_requested\": \"payment_of_wages\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": false,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 0.6666666666666666
+      },
+      {
+        "query_id": "Q7",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"is_complete\": false,\n  \"strengths\": [\"States the dispute\"],\n  \"missing_elements\": [\"Specific amount owed\", \"Deadline for payment\", \"Remedy requested\", \"Consequences of nonpayment\"],\n  \"suggested_improvements\": [\"Include the amount due\", \"Set a clear deadline\", \"State what remedy you want\", \"Mention possible legal action\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_inadequate": true,
+          "json_format": true,
+          "missing_elements_listed": true,
+          "improvements_suggested": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q8",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"is_adequate\": true,\n  \"strengths\": [\"Clearly identifies the dispute\", \"States the amount and deadline\", \"Requests a specific remedy\"],\n  \"weaknesses\": [\"Does not mention applicable law\", \"Could be more detailed about tenant obligations\"],\n  \"recommended_remedies\": [\"Return of security deposit\", \"Written explanation of any deductions\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_adequate": true,
+          "json_format": true,
+          "strengths_listed": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q9",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"recommended_remedies\": [\"Refund of the deposit\", \"Payment of the difference between estimated and actual repair costs\", \"Written acknowledgment of the breach\", \"Compensation for any additional expenses incurred\"],\n  \"reasoning\": \"The contractor accepted payment but failed to complete the agreed work, causing the homeowner additional financial loss.\"\n}",
+        "criteria_scores": {
+          "multiple_remedies": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q10",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"recommended_remedies\": [\"Refund of purchase price\", \"Repair or replacement of the appliance\", \"Compensation for consequential damages\"],\n  \"reasoning\": \"The seller failed to deliver a functional product despite the buyer's request for remedy, creating grounds for refund, repair, or replacement.\"\n}",
+        "criteria_scores": {
+          "multiple_remedies": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      }
+    ],
+    "gepa_qlora": [
+      {
+        "query_id": "Q1",
+        "task_type": "draft_demand_letter",
+        "response": "Dear [Landlord Name],\n\nI represent [Tenant Name] regarding the failure to return the security deposit of $2,500 following the termination of the tenancy at [Property Address]. My client delivered the property in good condition and received no itemized statement of damages or return of the deposit within the required time frame.\n\nThis withholding of funds violates [State] Civil Code \u00a7 [Section Number], which requires landlords to return the security deposit or provide a written explanation of any deductions within [Number] days of lease termination. Failure to comply may result in statutory penalties, including the return of the full deposit plus an additional amount equal to one month\u2019s rent or a percentage of the deposit, as provided by the statute.\n\nYou must return the $2,500 deposit or provide a detailed written accounting of any lawful deductions within 10 days of receipt of this letter, no later than [Date]. Failure to comply will result in immediate filing of a lawsuit to recover the deposit and applicable remedies under the law.\n\nSincerely,\n[Sender Name]",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": false,
+          "legal_basis": true
+        },
+        "total_score": 0.8333333333333334
+      },
+      {
+        "query_id": "Q2",
+        "task_type": "draft_demand_letter",
+        "response": "Dear [Client Name],\n\nI represent [Freelancer Name] regarding unpaid fees for branding services completed on [Date of Work]. Despite full performance of services and delivery of requested files, payment of $3,200 remains outstanding.\n\nUnder [State/Country] law and the terms of the engagement, failure to pay the agreed amount within 10 days after written demand constitutes a breach of the agreement and may expose the client to statutory penalties, including reimbursement of reasonable attorney fees and recovery of court costs.\n\nYou must remit payment of $3,200 within 10 days of receipt of this letter, by [Deadline Date]. Failure to comply will result in immediate filing of a lawsuit and pursuit of all available remedies.\n\nSincerely,\n[Sender Name]",
+        "criteria_scores": {
+          "formal_tone": true,
+          "parties_identified": true,
+          "amount_stated": true,
+          "deadline_included": true,
+          "escalation_mentioned": true,
+          "legal_basis": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q3",
+        "task_type": "identify_claim",
+        "response": "{\"claim_type\": \"tort\", \"reasoning\": \"Abandonment of work after receiving payment may constitute unjust enrichment or breach of fiduciary duty, prioritizing tort over contract.\"}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q4",
+        "task_type": "identify_claim",
+        "response": "{\"claim_type\": \"tort\", \"reasoning\": \"The seller's intentional misrepresentation about the car's condition constitutes fraud, which takes priority over any contractual dispute.\"}",
+        "criteria_scores": {
+          "correct_claim_type": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q5",
+        "task_type": "extract_elements",
+        "response": "{\n  \"claimant\": \"Sarah Kim\",\n  \"recipient\": \"Mr. Allen\",\n  \"damages\": \"$4,800 for water damage\",\n  \"deadline\": \"14 days from letter date\",\n  \"requested_remedy\": \"payment of $4,800\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": true,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q6",
+        "task_type": "extract_elements",
+        "response": "{\n  \"claimant\": \"Daniel Ortiz\",\n  \"recipient\": \"ABC Services\",\n  \"damages\": \"$1,950\",\n  \"deadline\": \"7 days\",\n  \"requested_remedy\": \"payment of $1,950\"\n}",
+        "criteria_scores": {
+          "all_fields_extracted": true,
+          "json_format": true,
+          "values_correct": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q7",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"status\": \"invalid\",\n  \"reasons\": [\"Missing specific amount claimed\", \"No deadline specified\", \"Lacks a demand for performance or remedy\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_inadequate": true,
+          "json_format": true,
+          "missing_elements_listed": true,
+          "improvements_suggested": false
+        },
+        "total_score": 0.75
+      },
+      {
+        "query_id": "Q8",
+        "task_type": "evaluate_letter",
+        "response": "{\n  \"status\": \"valid\",\n  \"reasons\": [\"Identifies the parties and the dispute clearly.\", \"States the amount at issue and the deadline for resolution.\", \"Includes a clear demand and potential legal consequences.\"]\n}",
+        "criteria_scores": {
+          "correctly_identifies_adequate": false,
+          "json_format": true,
+          "strengths_listed": true
+        },
+        "total_score": 0.6666666666666666
+      },
+      {
+        "query_id": "Q9",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"remedies\": [\"Refund of the deposit\", \"Compensation for additional repair costs\", \"Written confirmation of the refund\"],\n  \"legal_basis\": \"Contract law principles regarding breach of contract and unjust enrichment\",\n  \"action_steps\": [\"Request a written refund of the deposit\", \"Send written demand for reimbursement of additional costs\", \"Evaluate potential claims if the contractor refuses to respond\"]\n}",
+        "criteria_scores": {
+          "multiple_remedies": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      },
+      {
+        "query_id": "Q10",
+        "task_type": "recommend_remedy",
+        "response": "{\n  \"remedies\": [\"Refund for the defective appliance\", \"Replacement with a non-defective product\"],\n  \"legal_basis\": \"Consumer protection laws requiring sellers to provide repair, replacement, or refund for defective goods\",\n  \"action_steps\": [\"Document the defect and all communication with the seller\", \"Request a written response regarding repair, replacement, or refund\", \"Escalate the dispute to a consumer protection agency if unresolved\"]\n}",
+        "criteria_scores": {
+          "multiple_remedies": true,
+          "json_format": true,
+          "reasoning_provided": true
+        },
+        "total_score": 1.0
+      }
+    ]
+  }
+}
